@@ -7,6 +7,7 @@
           <element id="module-output" name="db-demo" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: junit:junit:4.12" />
           <element id="library" level="project" name="Maven: org.reflections:reflections:0.9.9" />
           <element id="library" level="project" name="Maven: com.google.guava:guava:15.0" />
           <element id="library" level="project" name="Maven: org.javassist:javassist:3.18.2-GA" />
@@ -21,7 +22,6 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.16.6" />
           <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.1" />
-          <element id="library" level="project" name="Maven: junit:junit:4.12" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -19,8 +19,7 @@ public class AnimalFactory {
         return ourInstance;
     }
 
-    private Reflections reflections = new Reflections("zoo");
-
+    private Reflections reflections = new Reflections();
     private List<Class<? extends Animal>> animalsTypes = new ArrayList<>();
 
     private Random random = new Random();
