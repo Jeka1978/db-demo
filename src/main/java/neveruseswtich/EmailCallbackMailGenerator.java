@@ -3,6 +3,7 @@ package neveruseswtich;
 /**
  * Created by Jeka on 23/08/2016.
  */
+@MailCode(2)
 public class EmailCallbackMailGenerator implements MailGenerator {
     @Override
     public String generateHtml(MailInfo mailInfo) {
