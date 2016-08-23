@@ -6,15 +6,12 @@ package neveruseswtich;
 public class MailSender {
     public void sendMail() {
         MailInfo mailInfo =  DBUtils.getMailInfo();
-        switch (mailInfo.getMailCode()) {
-            case 1:
-                //80 lines of code
-                System.out.println("WELCOME " + mailInfo.getClientName());
-                break;
-            default:
-                //60 lines of code
-                System.out.println("don't call us we call you");
-                break;
-        }
+        MailType mailType = MailType.findByDbCode(mailInfo.getMailCode());
+        String html = mailType.getMailGenerator().generateHtml(mailInfo);
+        send(html);
+    }
+
+    private void send(String html) {
+        System.out.println("sending... "+html);
     }
 }
