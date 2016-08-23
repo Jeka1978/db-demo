@@ -8,6 +8,7 @@ import lombok.SneakyThrows;
 public class Main {
     @SneakyThrows
     public static void main(String[] args) {
+
         MailSender mailSender = new MailSender();
         while (true) {
             mailSender.sendMail();
