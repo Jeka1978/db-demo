@@ -1,7 +1,11 @@
 package factory;
 
+import lombok.SneakyThrows;
 import org.springframework.cglib.proxy.Enhancer;
 
+import javax.management.MBeanServer;
+import javax.management.ObjectName;
+import java.lang.management.ManagementFactory;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -11,6 +15,14 @@ import java.lang.reflect.Proxy;
  * Created by Jeka on 24/08/2016.
  */
 public class BenchmarkProxyConfigurator implements ProxyConfigurator {
+    private BenchmarkManager benchmarkManager = new BenchmarkManager();
+
+    @SneakyThrows
+    public BenchmarkProxyConfigurator() {
+        MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
+        mBeanServer.registerMBean(benchmarkManager, new ObjectName("dbMBEANS", "name", "benchmark"));
+    }
+
     @Override
     public Object wrapWithProxy(Object t, Class type) {
         boolean isOneOfTheMethodsAnnotatedWithBenchmark = false;
@@ -33,7 +45,7 @@ public class BenchmarkProxyConfigurator implements ProxyConfigurator {
 
     private Object invocationHandlerInvoke(Object t, Class type, Method method, Object[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Method originalClassMethod = type.getMethod(method.getName(), method.getParameterTypes());
-        if (type.isAnnotationPresent(Benchmark.class) || originalClassMethod.isAnnotationPresent(Benchmark.class)) {
+        if ((type.isAnnotationPresent(Benchmark.class) || originalClassMethod.isAnnotationPresent(Benchmark.class))&&benchmarkManager.isEnabled()) {
             System.out.println("*********BENCHMARK***************");
             long start = System.nanoTime();
             Object retVal = method.invoke(t, args);
