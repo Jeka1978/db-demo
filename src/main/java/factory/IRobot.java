@@ -5,6 +5,7 @@ import javax.annotation.PostConstruct;
 /**
  * Created by Jeka on 24/08/2016.
  */
+@Benchmark
 public class IRobot {
     @InjectByType
     private Speaker speaker;

@@ -9,6 +9,7 @@ import java.util.Map;
 public class JavaConfig implements Config {
     private Map<Class, Class> map = new HashMap<>();
 
+
     public JavaConfig() {
         map.put(Speaker.class, ConsoleSpeaker.class);
         map.put(Cleaner.class, PowerCleaner.class);
