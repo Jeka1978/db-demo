@@ -4,8 +4,8 @@ import lombok.SneakyThrows;
 import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
+import javax.annotation.PostConstruct;
+import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -39,13 +39,32 @@ public class ObjectFactory {
     public <T> T createObject(Class<T> type) {
         type = resolveImpl(type);
         T t = type.newInstance();
-
         configure(t);
-
-
+        invokeInitMethods(type, t);
+        if (type.isAnnotationPresent(Benchmark.class)) {
+            return (T) Proxy.newProxyInstance(type.getClassLoader(), type.getInterfaces(), new InvocationHandler() {
+                @Override
+                public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                    System.out.println("*********BENCHMARK***************");
+                    long start = System.nanoTime();
+                    Object retVal = method.invoke(t, args);
+                    long end = System.nanoTime();
+                    System.out.println("method "+method.getName()+" worked for "+(end-start));
+                    System.out.println("*********BENCHMARK***************");
+                    return retVal;
+                }
+            });
+        }
         return t;
 
 
+    }
+
+    private <T> void invokeInitMethods(Class<T> type, T t) throws IllegalAccessException, InvocationTargetException {
+        Set<Method> methods = ReflectionUtils.getAllMethods(type, method -> method.isAnnotationPresent(PostConstruct.class));
+        for (Method method : methods) {
+            method.invoke(t);
+        }
     }
 
     private <T> Class<T> resolveImpl(Class<T> type) {
