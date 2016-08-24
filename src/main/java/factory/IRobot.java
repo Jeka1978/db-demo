@@ -1,5 +1,7 @@
 package factory;
 
+import javax.annotation.PostConstruct;
+
 /**
  * Created by Jeka on 24/08/2016.
  */
@@ -9,7 +11,10 @@ public class IRobot {
     @InjectByType
     private Cleaner cleaner;
 
-
+    @PostConstruct
+    public void init() {
+        System.out.println(cleaner.getClass().getName());
+    }
 
     public void cleanRoom(){
         speaker.speak("I started");

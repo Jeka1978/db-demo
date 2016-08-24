@@ -37,9 +37,7 @@ public class ObjectFactory {
 
     @SneakyThrows
     public <T> T createObject(Class<T> type) {
-        if (type.isInterface()) {
-            type = config.getImplClass(type);
-        }
+        type = resolveImpl(type);
         T t = type.newInstance();
 
         configure(t);
@@ -48,6 +46,13 @@ public class ObjectFactory {
         return t;
 
 
+    }
+
+    private <T> Class<T> resolveImpl(Class<T> type) {
+        if (type.isInterface()) {
+            type = config.getImplClass(type);
+        }
+        return type;
     }
 
     private <T> void configure(T t) throws Exception {
