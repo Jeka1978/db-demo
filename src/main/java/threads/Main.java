@@ -6,11 +6,15 @@ package threads;
 public class Main {
     public static void main(String[] args) {
         Thread thread = new Thread(() -> {
-            System.out.println(123);
+            while (true) {
+                System.out.println(123);
+            }
         });
         thread.start();
         Thread thread2 = new Thread(() -> {
-            System.out.println(666);
+            while (true) {
+                System.out.println(666);
+            }
         });
         thread2.start();
     }

@@ -21,18 +21,20 @@ public class MailSender {
         Set<Class<? extends MailGenerator>> classes = reflections.getSubTypesOf(MailGenerator.class);
         for (Class<? extends MailGenerator> aClass : classes) {
             if (!Modifier.isAbstract(aClass.getModifiers())) {
-                MailCode annotation = aClass.getAnnotation(MailCode.class);
-                if (annotation == null) {
+                MailCode[] annotations = aClass.getAnnotationsByType(MailCode.class);
+                if (annotations.length==0) {
                     throw new
                             IllegalStateException("" +
                             "if you implement" +
                             MailGenerator.class.getSimpleName());
                 }
-                int mailCode = annotation.value();
-                if (map.containsKey(mailCode)) {
-                    throw new IllegalArgumentException("already in use");
+                for (MailCode annotation : annotations) {
+                    int mailCode = annotation.value();
+                    if (map.containsKey(mailCode)) {
+                        throw new IllegalArgumentException("already in use");
+                    }
+                    map.put(mailCode, aClass.newInstance());
                 }
-                map.put(mailCode, aClass.newInstance());
             }
     }
     }
