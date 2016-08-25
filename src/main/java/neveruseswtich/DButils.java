@@ -12,6 +12,6 @@ public class DBUtils {
         Random random = new Random();
         DataFactory dataFactory = new DataFactory();
         return new MailInfo(dataFactory.getFirstName(),
-                random.nextInt(3)+1);
+                random.nextInt(5)+1);
     }
 }
