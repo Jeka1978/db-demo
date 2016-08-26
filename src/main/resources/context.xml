@@ -6,6 +6,7 @@
 
     <context:component-scan base-package="spring"/>
 
+    <bean class="spring.quoters.bpp.BeanDefinitionAnalyzerBeanFactoryPostProcessor"/>
     <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
     <bean class="spring.quoters.bpp.InjectRandomIntAnnotationBeanPostProcessor"/>
 
@@ -28,7 +29,7 @@
     <bean id="shakespearQuoter" class="spring.quoters.ShakespearQuoter">
         <property name="message" value="2 B || ! 2 B"/>
     </bean>
-    <bean id="terminatorQuoter" class="spring.quoters.TerminatorQuoter" scope="prototype" destroy-method="killAll">
+    <bean id="terminatorQuoter" class="spring.quoters.TerminatorQuoter"  destroy-method="killAll">
         <property name="messages">
             <list>
                 <value>I'll be back</value>
