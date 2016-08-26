@@ -28,7 +28,7 @@
     <bean id="shakespearQuoter" class="spring.quoters.ShakespearQuoter">
         <property name="message" value="2 B || ! 2 B"/>
     </bean>
-    <bean id="terminatorQuoter" class="spring.quoters.TerminatorQuoter">
+    <bean id="terminatorQuoter" class="spring.quoters.TerminatorQuoter" scope="prototype" destroy-method="killAll">
         <property name="messages">
             <list>
                 <value>I'll be back</value>
