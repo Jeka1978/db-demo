@@ -1,5 +1,9 @@
 package factory;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.context.annotation.Lazy;
+
 import javax.annotation.PostConstruct;
 import java.lang.ref.WeakReference;
 
@@ -8,7 +12,19 @@ import java.lang.ref.WeakReference;
  */
 @Benchmark
 @Singleton
+@Getter
 public class IRobot {
+
+
+
+    public void setAge(String age) {
+        System.out.println("String");
+    }
+
+    public void setAge(int age) {
+        System.out.println("int");
+    }
+
     @InjectByType
     private Speaker speaker;
     @InjectByType
