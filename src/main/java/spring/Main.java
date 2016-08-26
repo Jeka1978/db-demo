@@ -3,6 +3,7 @@ package spring;
 import factory.IRobot;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
+import spring.quoters.Quoter;
 
 import java.nio.file.FileSystem;
 
@@ -11,8 +12,6 @@ import java.nio.file.FileSystem;
  */
 public class Main {
     public static void main(String[] args) {
-        FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("c:\\context.xml");
-        IRobot iRobot = context.getBean(IRobot.class);
-
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
     }
 }
