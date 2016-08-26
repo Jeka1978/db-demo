@@ -3,7 +3,9 @@ package spring;
 import factory.IRobot;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
+import spring.quoters.Person;
 import spring.quoters.Quoter;
+import spring.quoters.TalkingRobot;
 
 import java.nio.file.FileSystem;
 
