@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
+import java.util.function.Supplier;
 
 /**
  * Created by Evegeny on 29/08/2016.
@@ -15,7 +16,10 @@ import java.util.Random;
 @Component
 public class ColorFrame extends JFrame{
     @Autowired
-    private Color color;
+    private Supplier<Color> colorSupplier;
+
+    @Autowired
+    private Supplier<MyService> myServiceSupplier;
 
     @PostConstruct
     private void init() {
@@ -26,8 +30,10 @@ public class ColorFrame extends JFrame{
 
     public void move() {
         Random random = new Random();
+        myServiceSupplier.get().a();
+        myServiceSupplier.get().b();
         setLocation(random.nextInt(800),random.nextInt(600));
-        getContentPane().setBackground(color);
+        getContentPane().setBackground(colorSupplier.get());
         repaint();
     }
 
