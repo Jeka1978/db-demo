@@ -1,7 +1,6 @@
 package springannotations.screensaver;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -13,10 +12,10 @@ import java.util.function.Supplier;
 /**
  * Created by Evegeny on 29/08/2016.
  */
-@Component
-public class ColorFrame extends JFrame{
+//@Component
+public abstract class ColorFrame extends JFrame{
     @Autowired
-    private Supplier<Color> colorSupplier;
+    private Color color;
 
     @Autowired
     private Supplier<MyService> myServiceSupplier;
@@ -30,12 +29,13 @@ public class ColorFrame extends JFrame{
 
     public void move() {
         Random random = new Random();
-        myServiceSupplier.get().a();
-        myServiceSupplier.get().b();
+        color = getColorBean();
         setLocation(random.nextInt(800),random.nextInt(600));
-        getContentPane().setBackground(colorSupplier.get());
+        getContentPane().setBackground(color);
         repaint();
     }
+
+    protected abstract Color getColorBean();
 
 }
 

@@ -39,6 +39,16 @@ public class ScreenSaverConfig {
         return new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255));
     }
 
+    @Bean
+    public ColorFrame colorFrame(){
+        return new ColorFrame() {
+            @Override
+            protected Color getColorBean() {
+                return color();
+            }
+        };
+    }
+
 }
 
 
