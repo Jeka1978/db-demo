@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
  */
 @Setter
 public class ShakespearQuoter implements Quoter {
+
     private String message;
     @InjectRandomInt(min = 3,max = 6)
     private int repeat;

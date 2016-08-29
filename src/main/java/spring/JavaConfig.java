@@ -11,9 +11,5 @@ import org.springframework.context.annotation.Scope;
  */
 @Configuration
 public class JavaConfig {
-    @Bean
-    public Integer integer(){
-        return 12;
-    }
 
 }
