@@ -5,10 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by Evegeny on 26/08/2016.
  */
+@Component
 public class BeanDefinitionFixerBeanPostProcessor implements BeanPostProcessor {
     @Autowired
     private ConfigurableListableBeanFactory factory;

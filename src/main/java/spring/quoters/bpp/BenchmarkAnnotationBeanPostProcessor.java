@@ -9,6 +9,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 
 import java.lang.annotation.Target;
@@ -18,6 +19,7 @@ import java.util.Map;
 /**
  * Created by Evegeny on 26/08/2016.
  */
+@Component
 public class BenchmarkAnnotationBeanPostProcessor implements BeanPostProcessor {
     @Autowired
     private ConfigurableListableBeanFactory factory;

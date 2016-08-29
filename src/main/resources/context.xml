@@ -5,52 +5,18 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="spring"/>
-    <context:property-placeholder location="classpath:quotes.properties, file:C:\\PROD\\prod.properties" ignore-resource-not-found="true"/>
-
-
-    <bean class="spring.quoters.bpp.BeanDefinitionAnalyzerBeanFactoryPostProcessor"/>
-    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
-    <bean class="spring.quoters.bpp.InjectRandomIntAnnotationBeanPostProcessor"/>
-    <bean class="spring.quoters.bpp.DeprecatedClassAnnotationSubstitutionBeanFactoryPostProcessor"/>
-
-    <bean class="spring.quoters.bpp.BeanDefinitionFixerBeanPostProcessor"/>
-    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
-    <bean class="spring.quoters.bpp.BenchmarkAnnotationBeanPostProcessor"/>
-    <bean class="spring.quoters.bpp.TransactionalAnnotationBeanPostProcessor"/>
-
-
-    <bean id="integer"  scope="prototype" class="java.lang.Integer" factory-bean="integerFactory" factory-method="getInt"/>
-
-
-    <bean id="integerFactory" class="spring.quoters.IntegerFactory">
-        <constructor-arg value="100"/>
-    </bean>
-
-
-    <bean id="anotherQuote" class="java.lang.String">
-        <constructor-arg value="get dawwwwwwwwwwwn"/>
-    </bean>
-    <bean id="robot" class="spring.quoters.TalkingRobotImpl">
-        <property name="quoters">
-            <list>
-                <ref bean="shakespearQuoter"/>
-                <ref bean="terminatorQuoter"/>
-            </list>
-        </property>
-    </bean>
-    <bean id="shakespearQuoter" class="spring.quoters.ShakespearQuoter">
-        <property name="message" value="${shake}"/>
-    </bean>
 
 
 
-    <bean id="terminatorQuoter" class="spring.quoters.TerminatorQuoter"  destroy-method="killAll">
-        <property name="messages">
-            <list>
-                <value>I'll be back</value>
-                <ref bean="anotherQuote"/>
-                <value>Astalavista baby</value>
-            </list>
-        </property>
-    </bean>
+
+
+
+
+
+
+
+
+
+
+
 </beans>

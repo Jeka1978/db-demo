@@ -7,6 +7,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 import spring.quoters.Transactional;
 
@@ -15,6 +16,7 @@ import java.lang.reflect.Proxy;
 /**
  * Created by Evegeny on 26/08/2016.
  */
+@Component
 public class TransactionalAnnotationBeanPostProcessor implements BeanPostProcessor {
     @Autowired
     private ConfigurableListableBeanFactory factory;

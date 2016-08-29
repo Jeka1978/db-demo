@@ -5,6 +5,7 @@ import lombok.SneakyThrows;
 import org.reflections.ReflectionUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
 import java.util.Random;
@@ -13,6 +14,7 @@ import java.util.Set;
 /**
  * Created by Evegeny on 26/08/2016.
  */
+@Component
 public class InjectRandomIntAnnotationBeanPostProcessor implements BeanPostProcessor {
     @Override
     @SneakyThrows
