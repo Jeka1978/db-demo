@@ -5,6 +5,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -15,14 +17,23 @@ import java.util.Random;
 @EnableScheduling
 public class MailSender {
 
+    private Map<Integer, MailGenerator> map = new HashMap<>();
+
     @Autowired
-    private Map<String, MailGenerator> map;
+    public void configureMap(List<MailGenerator> generators){
+        for (MailGenerator generator : generators) {
+            if (map.containsKey(generator.code())) {
+                throw new IllegalStateException("code " + generator.code() + " already in use");
+            }
+            map.put(generator.code(), generator);
+        }
+    }
 
 
     @Scheduled(cron = "1/1 * * * * ?")
     public void sendMail(){
         Random random = new Random();
-        String mailCode = String.valueOf(random.nextInt(2)+1);
+        int mailCode = random.nextInt(2)+1;
         MailGenerator mailGenerator = map.get(mailCode);
         if (mailGenerator == null) {
             throw new UnsupportedOperationException(mailCode+" not supported");

@@ -5,4 +5,5 @@ package springannotations.mailservice;
  */
 public interface MailGenerator {
     String generate();
+    int code();
 }
