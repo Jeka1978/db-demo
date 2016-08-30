@@ -16,6 +16,7 @@ import javax.annotation.PostConstruct;
 @Configuration
 @PropertySource("classpath:quotes.properties")
 @ComponentScan(basePackages = "spring.quoters")
+@EnableAspectJAutoProxy
 public class JavaConfig {
 
     @PostConstruct

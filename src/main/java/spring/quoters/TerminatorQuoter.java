@@ -19,7 +19,7 @@ import java.util.List;
 @Benchmark
 @Transactional
 @Component
-@Qualifier("films")
+@Qualifier("books")
 public class TerminatorQuoter implements Quoter {
 
 
