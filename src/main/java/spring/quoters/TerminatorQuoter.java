@@ -36,6 +36,7 @@ public class TerminatorQuoter implements Quoter {
     }
 
     @Override
+    @Deprecated
     public void sayQuote() {
        messages.forEach(System.out::println);
     }
