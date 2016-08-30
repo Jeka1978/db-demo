@@ -5,4 +5,6 @@ package spring.quoters;
  */
 public interface Quoter {
     void sayQuote();
+
+    void sayAdditionalQuote();
 }

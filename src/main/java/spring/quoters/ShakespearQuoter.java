@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
  */
 @Setter
 @Component
-@Qualifier("books")
+@Qualifier("history")
 public class ShakespearQuoter implements Quoter {
     @Value("${shake}")
     private String message;
@@ -30,5 +30,10 @@ public class ShakespearQuoter implements Quoter {
         for (int i = 0; i < repeat; i++) {
             System.out.println(message);
         }
+    }
+
+    @Override
+    public void sayAdditionalQuote() {
+
     }
 }

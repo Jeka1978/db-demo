@@ -7,6 +7,7 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import spring.quoters.Person;
 import spring.quoters.Quoter;
+import spring.quoters.StupidService;
 import spring.quoters.TalkingRobot;
 
 import java.nio.file.FileSystem;
