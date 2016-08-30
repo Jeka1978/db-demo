@@ -2,6 +2,7 @@ package spring.quoters.bpp;
 
 import factory.Benchmark;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -28,7 +29,12 @@ public class TransactionalAnnotationBeanPostProcessor implements BeanPostProcess
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        BeanDefinition beanDefinition = factory.getBeanDefinition(beanName);
+        BeanDefinition beanDefinition = null;
+        try {
+            beanDefinition = factory.getBeanDefinition(beanName);
+        } catch (NoSuchBeanDefinitionException e) {
+            return bean;
+        }
         String beanClassName = beanDefinition.getBeanClassName();
         Class<?> beanClass = ClassUtils.resolveClassName(beanClassName, ClassLoader.getSystemClassLoader());
         if (beanClass.isAnnotationPresent(Transactional.class)) {

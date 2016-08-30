@@ -1,6 +1,7 @@
 package spring.quoters.bpp;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -16,8 +17,15 @@ public class BeanDefinitionFixerBeanPostProcessor implements BeanPostProcessor {
     private ConfigurableListableBeanFactory factory;
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        BeanDefinition beanDefinition = factory.getBeanDefinition(beanName);
+        BeanDefinition beanDefinition = null;
+        try {
+            beanDefinition = factory.getBeanDefinition(beanName);
+        } catch (NoSuchBeanDefinitionException e) {
+
+            return bean;
+        }
         String beanClassName = beanDefinition.getBeanClassName();
+
         if (beanClassName == null) {
             beanDefinition.setBeanClassName(bean.getClass().getName());
         }

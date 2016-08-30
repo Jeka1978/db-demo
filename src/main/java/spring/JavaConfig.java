@@ -1,12 +1,11 @@
 package spring;
 
 import factory.IRobot;
+import factory.MyService;
+import factory.MyServiceImpl;
 import factory.Speaker;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import javax.annotation.PostConstruct;
@@ -16,7 +15,18 @@ import javax.annotation.PostConstruct;
  */
 @Configuration
 @PropertySource("classpath:quotes.properties")
+@ComponentScan(basePackages = "spring.quoters")
 public class JavaConfig {
+
+    @PostConstruct
+    public void init() {
+        System.out.println("CONFIG STARTED!!!!!!!!!!!!!!!!!");
+    }
+
+    @Bean
+    public MyService myService(){
+        return new MyServiceImpl<>();
+    }
 
   /*  @Bean  since 4.3.0 will be introduced automatic
     public static PropertySourcesPlaceholderConfigurer configurer(){

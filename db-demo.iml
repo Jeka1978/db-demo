@@ -14,7 +14,9 @@
     </facet>
     <facet type="Spring" name="Spring">
       <configuration>
-        <fileset id="fileset" name="Spring Application Context" removed="false">
+        <fileset id="fileset" name="Spring Application Context" removed="false" />
+        <fileset id="fileset2" name="Spring Application Context (2)" removed="false" />
+        <fileset id="fileset3" name="Spring Application Context (3)" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/context.xml</file>
         </fileset>
       </configuration>
@@ -51,6 +53,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.3.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:4.3.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:4.3.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-test:4.3.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.16.6" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
   </component>
